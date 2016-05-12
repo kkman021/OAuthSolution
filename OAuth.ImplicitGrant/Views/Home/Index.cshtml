@@ -26,7 +26,6 @@
         $(function() {
             var clientId = '@Clients.Client1.Id';
             var authorizeUri = '@(Paths.AuthorizationServerBaseAddress + Paths.AuthorizePath)';
-            var tokenUri = '@(Paths.AuthorizationServerBaseAddress + Paths.TokenPath)';
             var apiUri = '@(Paths.ResourceServerBaseAddress + Paths.GrabMemberInfo)';
             var returnUri = '@Paths.ImplicitGrantCallBackPath';
             var token = '';
@@ -37,7 +36,7 @@
 
                     var uri = addQueryString(authorizeUri,
                     {
-                        'client_id': '7890ab',
+                        'client_id': clientId,
                         'redirect_uri': returnUri,
                         'state': nonce,
                         'scope': 'bio notes',
