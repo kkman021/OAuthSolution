@@ -40,6 +40,10 @@ namespace OAuth.Server.Controllers
                     {
                         identity.AddClaim(new Claim("urn:oauth:scope", scope));
                     }
+
+                    //假Role資料
+                    identity.AddClaim(new Claim(ClaimsIdentity.DefaultRoleClaimType, "Admin"));
+
                     authentication.SignIn(identity);
                 }
 

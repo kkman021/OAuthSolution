@@ -53,7 +53,7 @@ namespace OAuth.CodeGrant.Controllers
             {
                 var resourceServerUri = new Uri(Paths.ResourceServerBaseAddress);
                 var client = new HttpClient(_webServerClient.CreateAuthorizingHandler(accessToken));
-                var body = client.GetStringAsync(new Uri(resourceServerUri, Paths.MePath)).Result;
+                var body = client.GetStringAsync(new Uri(resourceServerUri, Paths.GrabMemberInfo)).Result;
                 ViewBag.ApiResponse = body;
             }
 
