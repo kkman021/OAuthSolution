@@ -10,7 +10,7 @@
         /// <summary>
         /// ResourceServer project should run on this URL 
         /// </summary>
-        public const string ResourceServerBaseAddress = "http://localhost:38385";
+        public const string ResourceServerBaseAddress = "http://localhost:4465";
 
         /// <summary>
         /// ImplicitGrant project should be running on this specific port '38515' 
