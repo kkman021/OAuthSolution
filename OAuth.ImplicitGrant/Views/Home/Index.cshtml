@@ -29,6 +29,7 @@
             var tokenUri = '@(Paths.AuthorizationServerBaseAddress + Paths.TokenPath)';
             var apiUri = '@(Paths.ResourceServerBaseAddress + Paths.GrabMemberInfo)';
             var returnUri = '@Paths.ImplicitGrantCallBackPath';
+            var token = '';
 
             $("#Authorize")
                 .click(function() {
@@ -48,11 +49,27 @@
                         if (data.state !== nonce) {
                             return;
                         }
-
-                        $('#AccessToken').val(data.access_token);
+                        token = data.access_token;
+                        $('#AccessToken').val(token);
                     }
 
                     window.open(uri, 'Authorize', 'width=640,height=480');
+                });
+
+            $('#CallApi')
+                .click(function() {
+                    $.ajax(apiUri,
+                    {
+                        beforeSend: function(xhr) {
+                            var bearToken = "Bearer " + token;
+                            xhr.setRequestHeader('Authorization', bearToken);
+                        },
+                        dataType: 'json',
+                        cache: false,
+                        success: function(data) {
+                            $('#output').text(data);
+                        }
+                    });
                 });
 
             function addQueryString(uri, parameters) {

@@ -34,6 +34,7 @@ namespace OAuth.Server
                 AuthorizeEndpointPath = new PathString(Paths.AuthorizePath),
                 TokenEndpointPath = new PathString(Paths.TokenPath),
                 ApplicationCanDisplayErrors = true,
+                
 #if DEBUG
                 AllowInsecureHttp = true,
 #endif
@@ -111,6 +112,8 @@ namespace OAuth.Server
 
             return Task.FromResult(0);
         }
+
+        
 
 
         private readonly ConcurrentDictionary<string, string> _authenticationCodes =
