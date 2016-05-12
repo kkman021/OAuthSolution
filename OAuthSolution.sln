@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuth.ClientCredentialGrant
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuth.ResourceOwnerPasswordCredentialsGrant", "OAuth.ResourceOwnerPasswordCredentialsGrant\OAuth.ResourceOwnerPasswordCredentialsGrant.csproj", "{E3168771-8FCA-4CEF-8020-1BE8E04F3F51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuth.ImplicitGrant", "OAuth.ImplicitGrant\OAuth.ImplicitGrant.csproj", "{B6B84D86-F515-42C3-8B3E-D5A9AAF164B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{E3168771-8FCA-4CEF-8020-1BE8E04F3F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3168771-8FCA-4CEF-8020-1BE8E04F3F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3168771-8FCA-4CEF-8020-1BE8E04F3F51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6B84D86-F515-42C3-8B3E-D5A9AAF164B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6B84D86-F515-42C3-8B3E-D5A9AAF164B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6B84D86-F515-42C3-8B3E-D5A9AAF164B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6B84D86-F515-42C3-8B3E-D5A9AAF164B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +61,6 @@ Global
 		{7E30075B-15B5-494C-AE76-826B17C94FE3} = {BAA3EE80-DC58-4FA6-BF0D-2CD0443C332B}
 		{9608DEB4-9125-4C54-BCD4-9ED0C0377663} = {BAA3EE80-DC58-4FA6-BF0D-2CD0443C332B}
 		{E3168771-8FCA-4CEF-8020-1BE8E04F3F51} = {BAA3EE80-DC58-4FA6-BF0D-2CD0443C332B}
+		{B6B84D86-F515-42C3-8B3E-D5A9AAF164B2} = {BAA3EE80-DC58-4FA6-BF0D-2CD0443C332B}
 	EndGlobalSection
 EndGlobal
