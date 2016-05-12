@@ -1,11 +1,13 @@
 ﻿using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using Constants;
 
 namespace OAuth.Server.Controllers
 {
     public class OAuthController : Controller
     {
+
         public ActionResult Authorize()
         {
             if (Response.StatusCode != 200)
@@ -14,11 +16,13 @@ namespace OAuth.Server.Controllers
             }
 
             var authentication = HttpContext.GetOwinContext().Authentication;
-            var ticket = authentication.AuthenticateAsync("Application").Result;
+            var ticket = authentication.AuthenticateAsync(OAuthCfg.ApplicationName).Result;
             var identity = ticket?.Identity;
+
+            //使用者尚未登入，導至登入頁面
             if (identity == null)
             {
-                authentication.Challenge("Application");
+                authentication.Challenge(OAuthCfg.ApplicationName);
                 return new HttpUnauthorizedResult();
             }
 
@@ -26,20 +30,24 @@ namespace OAuth.Server.Controllers
 
             if (Request.HttpMethod == "POST")
             {
+                //建立Scope授權
                 if (!string.IsNullOrEmpty(Request.Form.Get("submit.Grant")))
                 {
                     identity = new ClaimsIdentity(identity.Claims, "Bearer", identity.NameClaimType,
                         identity.RoleClaimType);
+
                     foreach (var scope in scopes)
                     {
                         identity.AddClaim(new Claim("urn:oauth:scope", scope));
                     }
                     authentication.SignIn(identity);
                 }
+
+                //用另外一個身份登入按鈕
                 if (!string.IsNullOrEmpty(Request.Form.Get("submit.Login")))
                 {
-                    authentication.SignOut("Application");
-                    authentication.Challenge("Application");
+                    authentication.SignOut(OAuthCfg.ApplicationName);
+                    authentication.Challenge(OAuthCfg.ApplicationName);
                     return new HttpUnauthorizedResult();
                 }
             }

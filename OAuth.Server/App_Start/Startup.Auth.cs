@@ -22,20 +22,10 @@ namespace OAuth.Server
             // Enable Application Sign In Cookie
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationType = "Application",
+                AuthenticationType = OAuthCfg.ApplicationName,
                 AuthenticationMode = AuthenticationMode.Passive,
                 LoginPath = new PathString(Paths.LoginPath),
                 LogoutPath = new PathString(Paths.LogoutPath),
-            });
-
-            // Enable External Sign In Cookie
-            app.SetDefaultSignInAsAuthenticationType("External");
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = "External",
-                AuthenticationMode = AuthenticationMode.Passive,
-                CookieName = CookieAuthenticationDefaults.CookiePrefix + "External",
-                ExpireTimeSpan = TimeSpan.FromMinutes(5),
             });
             
             // Setup Authorization Server
