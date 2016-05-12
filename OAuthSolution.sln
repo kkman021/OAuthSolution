@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{BAA3EE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuth.CodeGrant", "OAuth.CodeGrant\OAuth.CodeGrant.csproj", "{7E30075B-15B5-494C-AE76-826B17C94FE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuth.Resource", "OAuth.Resource\OAuth.Resource.csproj", "{68A3822A-DDCF-4EDA-9143-39D68A0D890C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{7E30075B-15B5-494C-AE76-826B17C94FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E30075B-15B5-494C-AE76-826B17C94FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E30075B-15B5-494C-AE76-826B17C94FE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68A3822A-DDCF-4EDA-9143-39D68A0D890C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68A3822A-DDCF-4EDA-9143-39D68A0D890C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68A3822A-DDCF-4EDA-9143-39D68A0D890C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68A3822A-DDCF-4EDA-9143-39D68A0D890C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
