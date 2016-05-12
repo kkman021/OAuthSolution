@@ -13,9 +13,9 @@
         public const string ResourceServerBaseAddress = "http://localhost:4465";
 
         /// <summary>
-        /// ImplicitGrant project should be running on this specific port '38515' 
+        /// ImplicitGrant project should be running on this specific port '9392' 
         /// </summary>
-        public const string ImplicitGrantCallBackPath = "http://localhost:38515/Home/SignIn";
+        public const string ImplicitGrantCallBackPath = "http://localhost:9392/Home/SignIn";
 
         /// <summary>
         /// AuthorizationCodeGrant project should be running on this URL. 

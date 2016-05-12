@@ -1,31 +1,71 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using Constants
+@{
+    ViewBag.Title = "Implicit Grant - Client Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-12">
+        <h1>Implicit Grant</h1>
+        <h2>Client Page</h2>
+        <form id="form1">
+            <div>
+                Access Token<br/>
+                <input id="AccessToken" name="AccessToken"/>
+                <input id="Authorize" type="button" name="signin.AccessToken" value="Authorize"/>
+                <br/>
+                <input id="CallApi" name="submit.CallApi" value="Access Protected Resource API" type="button"/>
+            </div>
+            <div id="output">
+            </div>
+        </form>
     </div>
 </div>
+@section scripts
+{
+    <script>
+        $(function() {
+            var clientId = '@Clients.Client1.Id';
+            var authorizeUri = '@(Paths.AuthorizationServerBaseAddress + Paths.AuthorizePath)';
+            var tokenUri = '@(Paths.AuthorizationServerBaseAddress + Paths.TokenPath)';
+            var apiUri = '@(Paths.ResourceServerBaseAddress + Paths.GrabMemberInfo)';
+            var returnUri = '@Paths.ImplicitGrantCallBackPath';
+
+            $("#Authorize")
+                .click(function() {
+                    var nonce = 'my-nonce';
+
+                    var uri = addQueryString(authorizeUri,
+                    {
+                        'client_id': '7890ab',
+                        'redirect_uri': returnUri,
+                        'state': nonce,
+                        'scope': 'bio notes',
+                        'response_type': 'token'
+                    });
+
+                    window.oauth = {};
+                    window.oauth.signin = function(data) {
+                        if (data.state !== nonce) {
+                            return;
+                        }
+
+                        $('#AccessToken').val(data.access_token);
+                    }
+
+                    window.open(uri, 'Authorize', 'width=640,height=480');
+                });
+
+            function addQueryString(uri, parameters) {
+                var delimiter = (uri.indexOf('?') === -1) ? '?' : '&';
+                for (var parameterName in parameters) {
+                    if (parameters.hasOwnProperty(parameterName)) {
+                        var parameterValue = parameters[parameterName];
+                        uri += delimiter + encodeURIComponent(parameterName) + '=' + encodeURIComponent(parameterValue);
+                        delimiter = '&';
+                    }
+                }
+                return uri;
+            }
+        });
+    </script>
+}

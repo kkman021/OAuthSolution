@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "SignIn";
+}
+<h1>Implicit Grant</h1>
+<h2>Client Page</h2>
+<p>Welcome back!</p>
+@section scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            function getFragment() {
+                if (window.location.hash.indexOf("#") === 0) {
+                    return parseQueryString(window.location.hash.substr(1));
+                } else {
+                    return {};
+                }
+            }
+
+            function parseQueryString(queryString) {
+                var data = {},
+                    pairs,
+                    pair,
+                    separatorIndex,
+                    escapedKey,
+                    escapedValue,
+                    key,
+                    value;
+
+                if (queryString === null) {
+                    return data;
+                }
+
+                pairs = queryString.split("&");
+
+                for (var i = 0; i < pairs.length; i++) {
+                    pair = pairs[i];
+                    separatorIndex = pair.indexOf("=");
+
+                    if (separatorIndex === -1) {
+                        escapedKey = pair;
+                        escapedValue = null;
+                    } else {
+                        escapedKey = pair.substr(0, separatorIndex);
+                        escapedValue = pair.substr(separatorIndex + 1);
+                    }
+
+                    key = decodeURIComponent(escapedKey);
+                    value = decodeURIComponent(escapedValue);
+
+                    data[key] = value;
+                }
+
+                return data;
+            }
+
+            var fragments = getFragment();
+            if (window.opener && window.opener.oauth && window.opener.oauth.signin) {
+                window.opener.oauth.signin(fragments);
+            }
+            window.close();
+        });
+    </script>}
