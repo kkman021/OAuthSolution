@@ -73,6 +73,10 @@ namespace OAuth.Server
             {
                 context.Validated(Clients.Client2.RedirectUrl);
             }
+            else if (context.ClientId == Clients.ClientPostMan.Id)
+            {
+                context.Validated(Clients.ClientPostMan.RedirectUrl);
+            }
             return Task.FromResult(0);
         }
 
@@ -88,6 +92,10 @@ namespace OAuth.Server
                     context.Validated();
                 }
                 else if (clientId == Clients.Client2.Id && clientSecret == Clients.Client2.Secret)
+                {
+                    context.Validated();
+                }
+                else if (clientId == Clients.ClientPostMan.Id && clientSecret == Clients.ClientPostMan.Secret)
                 {
                     context.Validated();
                 }
